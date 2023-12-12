@@ -213,6 +213,7 @@ int Game::Play(int mode) {
                 case 'A':
                 case 'a':
                     currBlock->leftMove(aboard);
+		    break;
                 case 'D':
                 case 'd':
                     currBlock->rightMove(aboard);
