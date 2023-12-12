@@ -1,25 +1,27 @@
 #include "game.h"
 
 int Game::menu() {
-    textColor(LIGHTWHITE);
-    cout << "#===============================================================================================================#\n"
-        "				####### ####### ####### ######    ###    #####\n"
-        "				   #    #          #    #     #    #    #     #\n"
-        "				   #    #          #    #     #    #    #\n"
-        "				   #    #####      #    ######     #     #####\n"
-        "				   #    #          #    #   #      #          #\n"
-        "				   #    #          #    #    #     #    #     #\n"
-        "				   #    #######    #    #     #   ###    #####"
-        "\n"
-        "#===============================================================================================================#\n";
+    textColor(LIGHTCYAN);
+    cout << "#########################################################" << endl;
+    cout << "#                                                       #" << endl;
+    cout << "#   TTTTTTTT  EEEEEEE  TTTTTTTT  RRRRR    II   SSSS     #" << endl;
+    cout << "#      TT     EE          TT     RR   R   II  SS        #" << endl;
+    cout << "#      TT     EEEEEEE     TT     RRRRR    II   SSSS     #" << endl;
+    cout << "#      TT     EE          TT     RR  RR   II      SS    #" << endl;
+    cout << "#      TT     EEEEEEE     TT     RR   RR  II   SSSS     #" << endl;
+    cout << "#                                                       #" << endl;
+    cout << "#########################################################" << endl;
+    gotoXY(20, 10); cout << "Group 10 22CLC10";
+
+    textColor(LIGHTGRAY);
     int type = 1;
     char c = 175;
-    gotoXY(50, 20); cout << "NEW GAME";
-    gotoXY(50, 22); cout << "RESUME";
-    gotoXY(50, 24); cout << "HIGH SCORE";
-    gotoXY(50, 26); cout << "QUIT";
-    gotoXY(50, 28); cout << "Press W and S to move.";
-    gotoXY(50, 30); cout << "Press Enter to select.";
+    gotoXY(20, 20); cout << "NEW GAME";
+    gotoXY(20, 22); cout << "RESUME";
+    gotoXY(20, 24); cout << "HIGH SCORE";
+    gotoXY(20, 26); cout << "QUIT";
+    gotoXY(20, 28); cout << "Press W and S to move.";
+    gotoXY(20, 30); cout << "Press Enter to select.";
     noCursor();
     while(1) 
     {
@@ -30,46 +32,46 @@ int Game::menu() {
         }
         if (type == 1)
         {
-            gotoXY(45, 20);
+            gotoXY(15, 20);
             cout << c;
-            gotoXY(45, 22);
+            gotoXY(15, 22);
             cout << ' ';
-            gotoXY(45, 24);
+            gotoXY(15, 24);
             cout << ' ';
-            gotoXY(45, 26);
+            gotoXY(15, 26);
             cout << ' ';
         }
         else if (type == 2)
         {
-            gotoXY(45, 20);
+            gotoXY(15, 20);
             cout << ' ';
-            gotoXY(45, 22);
+            gotoXY(15, 22);
             cout << c;
-            gotoXY(45, 24);
+            gotoXY(15, 24);
             cout << ' ';
-            gotoXY(45, 26);
+            gotoXY(15, 26);
             cout << ' ';
         }
         else if (type == 3)
         {
-            gotoXY(45, 20);
+            gotoXY(15, 20);
             cout << ' ';
-            gotoXY(45, 22);
+            gotoXY(15, 22);
             cout << ' ';
-            gotoXY(45, 24);
+            gotoXY(15, 24);
             cout << c;
-            gotoXY(45, 26);
+            gotoXY(15, 26);
             cout << ' ';
         }
         else if (type == 4)
         {
-            gotoXY(45, 20);
+            gotoXY(15, 20);
             cout << ' ';
-            gotoXY(45, 22);
+            gotoXY(15, 22);
             cout << ' ';
-            gotoXY(45, 24);
+            gotoXY(15, 24);
             cout << ' ';
-            gotoXY(45, 26);
+            gotoXY(15, 26);
             cout << c;
         }
         char d;
