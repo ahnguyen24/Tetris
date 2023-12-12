@@ -11,7 +11,7 @@ void Board::drawBoard() {
 	// above frame and below frame
 	for (int i = LEFT_MARGIN; i <= RIGHT_MARGIN; i++)
 	{
-		textColor(11);
+		textColor(LIGHTCYAN);
 		gotoXY(i, TOP_MARGIN);
 		cout << hor_1;
 		gotoXY(i, BOT_MARGIN);

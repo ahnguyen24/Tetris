@@ -1,8 +1,17 @@
 #include "game.h"
 
 int Game::menu() {
-    textColor(LIGHTCYAN);
-    cout << "..................."; //cho nay chua ve menu
+    textColor(LIGHTWHITE);
+    cout << "#===============================================================================================================#\n"
+        "				####### ####### ####### ######    ###    #####\n"
+        "				   #    #          #    #     #    #    #     #\n"
+        "				   #    #          #    #     #    #    #\n"
+        "				   #    #####      #    ######     #     #####\n"
+        "				   #    #          #    #   #      #          #\n"
+        "				   #    #          #    #    #     #    #     #\n"
+        "				   #    #######    #    #     #   ###    #####"
+        "\n"
+        "#===============================================================================================================#\n";
     int type = 1;
     char c = 175;
     gotoXY(50, 20); cout << "NEW GAME";
@@ -124,7 +133,6 @@ void Game::Introduce() {
     int x = RIGHT_MARGIN + 9;
     int y = TOP_MARGIN + 12 * BRICK_ROW;
 
-
     x = RIGHT_MARGIN + 3;
     y = TOP_MARGIN + 11 * BRICK_ROW;
 
@@ -178,7 +186,7 @@ int Game::Play(int mode) {
 
     do {
         aPlayer.saveInfo();
-        if (currBlock->getY_FB() >= 4)
+        if (currBlock->getX_FB() >= 4)
         {
             shade->drawShade(aboard);
             currBlock->drawBlock();
@@ -191,26 +199,31 @@ int Game::Play(int mode) {
                 c = toupper(_getch());
                 currBlock->eraseBlock();
                 shade->eraseBlock();
-                shade->setX_FB(currBlock->getX_FB());
                 shade->setY_FB(currBlock->getY_FB());
+                shade->setX_FB(currBlock->getX_FB());
                 switch (c)
                 {
                 case 'W':
+                case 'w':
                     if (currBlock->rotate(aboard))
                         shade->rotate(aboard);
                     break;
                 case 'A':
+                case 'a':
                     currBlock->leftMove(aboard);
                 case 'D':
+                case 'd':
                     currBlock->rightMove(aboard);
                     break;
                 case 'S':
+                case 's':
                     currBlock->downMove(aboard);
                     break;
                 case ' ':
                     currBlock->fall(aboard);
                     break;
                 case 'R':
+                case 'r':
                     if (this->draw_Y_N_board(LEFT_MARGIN + 6, TOP_MARGIN + 5, " Restart ? "))
                     {
                         aboard.erase();
@@ -273,8 +286,8 @@ int Game::Play(int mode) {
                     break;
                 }
 
-                shade->setX_FB(currBlock->getX_FB());
                 shade->setY_FB(currBlock->getY_FB());
+                shade->setX_FB(currBlock->getX_FB());
 
                 shade->drawShade(aboard);
                 currBlock->drawBlock();
@@ -303,7 +316,7 @@ int Game::Play(int mode) {
         {
             currBlock->setX_FB(currBlock->getX_FB() - 1);
             currBlock->eraseBlock();
-            currBlock->setY_FB(currBlock->getY_FB() + 1);
+            currBlock->setX_FB(currBlock->getX_FB() + 1);
             currBlock->drawBlock();
         }
 
@@ -461,3 +474,15 @@ void Game::erase_Y_N_board(int x, int y)
     }
 }
 
+void Sort(vector<Player>& aVector) {
+    for (int i = 0; i < aVector.size() - 1; i++)
+    {
+        for (int j = i + 1; j < aVector.size(); j++)
+        {
+            if (aVector.at(i).getScore() < aVector.at(j).getScore())
+            {
+                Swap(aVector.at(i), aVector.at(j));
+            }
+        }
+    }
+}

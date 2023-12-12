@@ -1,20 +1,20 @@
 #include "block.h"
-int Gach::getX_FB() {
-    return xFirstBrick;
-}
 int Gach::getY_FB() {
     return yFirstBrick;
 }
-void Gach::setX_FB(int x) {
-    xFirstBrick = x;
+int Gach::getX_FB() {
+    return xFirstBrick;
 }
-void Gach::setY_FB(int y) {
-    yFirstBrick = y;
+void Gach::setY_FB(int x) {
+    yFirstBrick = x;
+}
+void Gach::setX_FB(int y) {
+    xFirstBrick = y;
 }
 Gach::Gach() {
     Brow = Bcol = 2;
-    yFirstBrick = 2;
-    xFirstBrick = 5;
+    xFirstBrick = 2;
+    yFirstBrick = 5;
 
     Block.resize(Brow);
     for (int i = 0; i < Brow; ++i)
@@ -35,24 +35,25 @@ void Gach::random() {
         case 7: // I brick
             Brow = 4;
             Bcol = 1;
-            xFirstBrick = 5;
-            yFirstBrick = 0;
+            yFirstBrick = 5;
+            xFirstBrick = 0;
             break;
         case 6: // O brick
             Brow = Bcol = 2;
-            xFirstBrick = 5;
-            yFirstBrick = 2;
+            yFirstBrick = 5;
+            xFirstBrick = 2;
             break;
         default:
             Brow = 2;
             Bcol = 3;
-            xFirstBrick = 5;
-            yFirstBrick = 2;
+            yFirstBrick = 5;
+            xFirstBrick = 2;
             break;
     }
     Block.resize(Brow);
     for (int i = 0; i < Brow; ++i)
-	Block.at(i).resize(Bcol);
+	    Block.at(i).resize(Bcol);
+
     switch (type) 
     {
         case 1:		// Z Brick
@@ -111,13 +112,13 @@ void Gach::random() {
 }
 void Gach::drawBlock()
 {
-	int x = LEFT_MARGIN + 1 + xFirstBrick*BRICK_COL;
-	int y = yFirstBrick * BRICK_ROW + 1;
+	int x = LEFT_MARGIN + 1 + yFirstBrick * BRICK_COL;
+	int y = xFirstBrick * BRICK_ROW + 1;
 	for (int i = 0; i < Brow; i++)
 	{
 		for (int j = 0; j < Bcol; j++)
 		{
-			if (Block.at(i).at(j).getValue() != 0 && (yFirstBrick + i) >= 4)
+			if (Block.at(i).at(j).getValue() != 0 && (xFirstBrick + i) >= 4)
 			{
 				textColor(Block.at(i).at(j).getValue());
 				Block.at(i).at(j).drawBrick(x + j * BRICK_COL, y + i *BRICK_ROW, 35);
@@ -126,13 +127,13 @@ void Gach::drawBlock()
 	}
 }
 void Gach::eraseBlock() {
-    int x = LEFT_MARGIN + 1 + xFirstBrick * BRICK_COL;
-    int y = yFirstBrick * BRICK_ROW + 1;
+    int x = LEFT_MARGIN + 1 + yFirstBrick * BRICK_COL;
+    int y = xFirstBrick * BRICK_ROW + 1;
     for (int i = 0; i < Brow; i++)
     {
         for (int j = 0; j < Bcol; j++)
         {
-            if (Block.at(i).at(j).getValue() != 0 && (yFirstBrick + i) >= 4)
+            if (Block.at(i).at(j).getValue() != 0 && (xFirstBrick + i) >= 4)
             {
                 textColor(BLACK);
                 Block.at(i).at(j).drawBrick(x + j * BRICK_COL, y + i *BRICK_ROW, ' ');
@@ -141,7 +142,7 @@ void Gach::eraseBlock() {
     }
 }
 void Gach::drawNext(Board& aboard) {
-    textColor(LIGHTBLUE);
+    textColor(LIGHTRED);
     gotoXY(RIGHT_MARGIN + 1 * BRICK_COL, TOP_MARGIN + 1 * BRICK_ROW);
     cout << "NEXT BLOCK : ";
     if (Block[0][0].getValue() == 15) 
@@ -188,12 +189,12 @@ bool Gach::leftMove(Board& aboard) {
         {
             if (Block[i][j].getValue() != 0)
             {
-                if (left(yFirstBrick + i, xFirstBrick + j, aboard) == false)
+                if (left(xFirstBrick + i, yFirstBrick + j, aboard) == false)
                     return false;
             }
         }
     }
-    xFirstBrick -= 1;
+    yFirstBrick -= 1;
     return true;
 }
 bool Gach::rightMove(Board& aboard) {
@@ -203,12 +204,12 @@ bool Gach::rightMove(Board& aboard) {
         {
             if (Block[i][j].getValue() != 0)
             {
-                if (right(yFirstBrick + i, xFirstBrick + j, aboard) == false)
+                if (right(xFirstBrick + i, yFirstBrick + j, aboard) == false)
                     return false;
             }
         }
     }
-    xFirstBrick += 1;
+    yFirstBrick += 1;
     return true;
 }
 bool Gach::downMove(Board& aboard) {
@@ -218,12 +219,12 @@ bool Gach::downMove(Board& aboard) {
         {
             if (Block[i][j].getValue() != 0)
             {
-                if (down(yFirstBrick + i, xFirstBrick + j, aboard) == false)
+                if (down(xFirstBrick + i, yFirstBrick + j, aboard) == false)
                     return false;
             }
         }
     }
-    yFirstBrick += 1;
+    xFirstBrick += 1;
     return true;
 }
 void Gach::fall(Board& aboard) {
@@ -240,8 +241,8 @@ bool Gach::rotate(Board& aboard) {
     {
         for (int j = 0; j < tempCol; j++)
         {
-            if (!checkInside(yFirstBrick + i, xFirstBrick + j) ||
-                aboard.getValueBrick(yFirstBrick + i, xFirstBrick + j) != 0)
+            if (!checkInside(xFirstBrick + i, yFirstBrick + j) ||
+                aboard.getValueBrick(xFirstBrick + i, yFirstBrick + j) != 0)
                 return false;
         }
     }
@@ -279,7 +280,7 @@ void Gach::assignBoardValue(Board& aboard)
         {
             if (Block[i][j].getValue() != 0)
             {
-                aboard.setValueBrick(yFirstBrick + i, xFirstBrick + j, Block[i][j].getValue());
+                aboard.setValueBrick(xFirstBrick + i, yFirstBrick + j, Block[i][j].getValue());
             }
         }
     }
@@ -291,13 +292,13 @@ void Gach::drawShade(Board& aboard)
     textColor(119);
 
     int x = LEFT_MARGIN + 1 + yFirstBrick*BRICK_COL;
-    int y = yFirstBrick * BRICK_ROW + 1;
+    int y = xFirstBrick * BRICK_ROW + 1;
 
     for (int i = 0; i < Brow; i++)
     {
         for (int j = 0; j < Bcol; j++)
         {
-            if (Block.at(i).at(j).getValue() != 0 && (yFirstBrick + i) >= 4)
+            if (Block.at(i).at(j).getValue() != 0 && (xFirstBrick + i) >= 4)
             {
                 Block.at(i).at(j).drawBrick(x + j * BRICK_COL, y + i * BRICK_ROW, ' ');
             }
@@ -310,9 +311,9 @@ int Gach::checkGame(Board& aboard, Player& aplayer)
     int i, j, count;
     i = Brow - 1;
 
-    if (yFirstBrick < 4)
+    if (xFirstBrick < 4)
         return -1;	//Gameover
-    if (aplayer.getLevel() >= 8)
+    if (aplayer.getLevel() >= 6)
         return 1; // win game
 
     int fullRow = 0;
@@ -321,13 +322,13 @@ int Gach::checkGame(Board& aboard, Player& aplayer)
         count = 0;
         for (j = 0; j < BOARD_COL; j++)
         {
-            if (aboard.getValueBrick(yFirstBrick + i,j) != 0)
+            if (aboard.getValueBrick(xFirstBrick + i,j) != 0)
                 count++;
         }
 
         if (count == BOARD_COL)
         {
-            aboard.update(yFirstBrick + i);
+            aboard.update(xFirstBrick + i);
             fullRow++;
         }
         else

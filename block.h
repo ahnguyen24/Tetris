@@ -1,9 +1,11 @@
 #pragma once
+#include <vector>
+#include <time.h>
+
 #include "brick.h"
 #include "board.h"
 #include "player.h"
-#include <vector>
-#include <time.h>
+
 
 using namespace std;
 
@@ -12,13 +14,13 @@ private:
     vector<vector<Brick>> Block;
     int Brow;                       // so hang cua khoi gach
     int Bcol;                       // so cot cua khoi gach
-    int xFirstBrick;                // toa do x cua vien dau
-    int yFirstBrick;                // toa do y cua vien dau
+    int yFirstBrick;                // toa do x cua vien dau
+    int xFirstBrick;                // toa do y cua vien dau
 public:
     int getX_FB();                  // lay toa do x
-    void setX_FB(int x);                 // dat toa do x
+    void setX_FB(int y);                 // dat toa do x
     int getY_FB();                  // lay toa do y
-    void setY_FB(int y);                 // dat toa do y
+    void setY_FB(int x);                 // dat toa do y
     Gach();                         // constructor
     ~Gach();                        // destructor
     

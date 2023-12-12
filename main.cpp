@@ -33,6 +33,7 @@ int main()
 	{
 		x.inputName();
 	}
+	x.Introduce();
 	res = x.Play(mode);
 	x.End(res);
 	return 0;
