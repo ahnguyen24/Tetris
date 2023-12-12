@@ -58,7 +58,7 @@ void Board::displayBoard()
 				if (aBoard[i][j].getValue() != 0)
 				{
 					textColor(aBoard[i][j].getValue());
-					aBoard[i][j].drawBrick(x + j * BRICK_COL, i * BRICK_ROW + 1, 35);
+					aBoard[i][j].drawBrick(x + j * BRICK_COL, i * BRICK_ROW + 1, 219);
 				}
 				else
 				{

@@ -1,4 +1,5 @@
 #include "game.h"
+#include <stdlib.h>
 
 int Game::menu() {
     textColor(LIGHTCYAN);
@@ -16,12 +17,13 @@ int Game::menu() {
     textColor(LIGHTGRAY);
     int type = 1;
     char c = 175;
-    gotoXY(20, 20); cout << "NEW GAME";
-    gotoXY(20, 22); cout << "RESUME";
-    gotoXY(20, 24); cout << "HIGH SCORE";
-    gotoXY(20, 26); cout << "QUIT";
-    gotoXY(20, 28); cout << "Press W and S to move.";
-    gotoXY(20, 30); cout << "Press Enter to select.";
+    gotoXY(20, 13); cout << "NEW GAME";
+    gotoXY(20, 15); cout << "RESUME";
+    gotoXY(20, 17); cout << "HIGH SCORE";
+    gotoXY(20, 19); cout << "QUIT";
+    gotoXY(20, 21); cout << "Press W and S to move.";
+    gotoXY(20, 23); cout << "Press Enter to select.";
+
     noCursor();
     while(1) 
     {
@@ -32,46 +34,46 @@ int Game::menu() {
         }
         if (type == 1)
         {
-            gotoXY(15, 20);
+            gotoXY(15, 13);
             cout << c;
-            gotoXY(15, 22);
+            gotoXY(15, 15);
             cout << ' ';
-            gotoXY(15, 24);
+            gotoXY(15, 17);
             cout << ' ';
-            gotoXY(15, 26);
+            gotoXY(15, 19);
             cout << ' ';
         }
         else if (type == 2)
         {
-            gotoXY(15, 20);
+            gotoXY(15, 13);
             cout << ' ';
-            gotoXY(15, 22);
+            gotoXY(15, 15);
             cout << c;
-            gotoXY(15, 24);
+            gotoXY(15, 17);
             cout << ' ';
-            gotoXY(15, 26);
+            gotoXY(15, 19);
             cout << ' ';
         }
         else if (type == 3)
         {
-            gotoXY(15, 20);
+            gotoXY(15, 13);
             cout << ' ';
-            gotoXY(15, 22);
+            gotoXY(15, 15);
             cout << ' ';
-            gotoXY(15, 24);
+            gotoXY(15, 17);
             cout << c;
-            gotoXY(15, 26);
+            gotoXY(15, 19);
             cout << ' ';
         }
         else if (type == 4)
         {
-            gotoXY(15, 20);
+            gotoXY(15, 13);
             cout << ' ';
-            gotoXY(15, 22);
+            gotoXY(15, 15);
             cout << ' ';
-            gotoXY(15, 24);
+            gotoXY(15, 17);
             cout << ' ';
-            gotoXY(15, 26);
+            gotoXY(15, 19);
             cout << c;
         }
         char d;
@@ -213,7 +215,7 @@ int Game::Play(int mode) {
                 case 'A':
                 case 'a':
                     currBlock->leftMove(aboard);
-		    break;
+                    break;
                 case 'D':
                 case 'd':
                     currBlock->rightMove(aboard);

@@ -4,8 +4,8 @@
 
 #include <fstream>
 
-#define BOARD_ROW       22
-#define BOARD_COL       11
+#define BOARD_ROW       25
+#define BOARD_COL       15
 #define LEFT_MARGIN     5 * BRICK_COL
 #define RIGHT_MARGIN    LEFT_MARGIN + BOARD_COL * BRICK_COL + 1
 #define TOP_MARGIN      4 * BRICK_ROW

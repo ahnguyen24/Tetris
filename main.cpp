@@ -1,5 +1,6 @@
 #include "game.h"
 
+
 int main()
 {
 	int mode, res;

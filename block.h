@@ -18,9 +18,9 @@ private:
     int xFirstBrick;                // toa do y cua vien dau
 public:
     int getX_FB();                  // lay toa do x
-    void setX_FB(int y);                 // dat toa do x
+    void setX_FB(int y);            // dat toa do x
     int getY_FB();                  // lay toa do y
-    void setY_FB(int x);                 // dat toa do y
+    void setY_FB(int x);            // dat toa do y
     Gach();                         // constructor
     ~Gach();                        // destructor
     

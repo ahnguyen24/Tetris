@@ -121,7 +121,7 @@ void Gach::drawBlock()
 			if (Block.at(i).at(j).getValue() != 0 && (xFirstBrick + i) >= 4)
 			{
 				textColor(Block.at(i).at(j).getValue());
-				Block.at(i).at(j).drawBrick(x + j * BRICK_COL, y + i *BRICK_ROW, 35);
+				Block.at(i).at(j).drawBrick(x + j * BRICK_COL, y + i *BRICK_ROW, 219);
 			}
 		}
 	}
@@ -152,7 +152,7 @@ void Gach::drawNext(Board& aboard) {
             if (Block.at(i).at(j).getValue() != 0) 
             {
                 textColor(Block.at(i).at(j).getValue());
-                Block.at(i).at(j).drawBrick(RIGHT_MARGIN + (3 + j) * BRICK_COL, TOP_MARGIN + (2 + i) * BRICK_ROW, 35);
+                Block.at(i).at(j).drawBrick(RIGHT_MARGIN + (3 + j) * BRICK_COL, TOP_MARGIN + (2 + i) * BRICK_ROW, 219);
             }
     if (Block[0][0].getValue() == 7) this->rotate(aboard);
 }
