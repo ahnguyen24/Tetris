@@ -23,5 +23,4 @@ public:
     void erase();
     int getValueBrick(int row, int col);                // lay value cua vien gach tai vi tri [row][col]
     void setValueBrick(int row, int col, int value);    // set value ...
-    void INPUT(ifstream& FileIn);                       // input tu file
 };

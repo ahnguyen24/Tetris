@@ -1,12 +1,4 @@
-4 350 a
-3 240  anh
-1 0      anh
-1 0     anh
-1 0     anh
-1 0    No name
-1 0    No name
-1 0   anh nguyen
-1 0   anh nguyen
-1 0      No name
-1 0      No name
-1 0      anh
+4 360  siu
+2 110  anh nguyen
+1 0  No name
+1 0  No name

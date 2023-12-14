@@ -18,12 +18,12 @@ private:
     int level;
 public:
     Player();
-    int getLevel();
-    int getScore();
-    string getName();
-    void setName(string s);
-    void updateScore(int s);
-    void saveInfo();
+    int getLevel();                     // lay level hien tai
+    int getScore();                     // lay score hien tai
+    string getName();                   // lay ten nguoi choi
+    void setName(string s);             // ham dat ten nguoi choi  
+    void updateScore(int s);            // ham update lai diem so sau khi co 1(+) hang
+    void saveInfo();                    // bang luu thong tin nguoi choi
     void restart();
     void Input(ifstream& FileIn);
     void Output(ofstream& FileOut);

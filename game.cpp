@@ -3,22 +3,27 @@
 
 int Game::menu() {
     textColor(LIGHTCYAN);
-    cout << "#########################################################" << endl;
-    cout << "#                                                       #" << endl;
-    cout << "#   TTTTTTTT  EEEEEEE  TTTTTTTT  RRRRR    II   SSSS     #" << endl;
-    cout << "#      TT     EE          TT     RR   R   II  SS        #" << endl;
-    cout << "#      TT     EEEEEEE     TT     RRRRR    II   SSSS     #" << endl;
-    cout << "#      TT     EE          TT     RR  RR   II      SS    #" << endl;
-    cout << "#      TT     EEEEEEE     TT     RR   RR  II   SSSS     #" << endl;
-    cout << "#                                                       #" << endl;
-    cout << "#########################################################" << endl;
-    gotoXY(20, 10); cout << "Group 10 22CLC10";
-
+    string srcMenu;
+    char x = 219;
+    string myString(1, x);
+    ifstream FileIn;
+    FileIn.open("menuGame.txt");
+    while (!FileIn.eof())
+    {
+        getline(FileIn, srcMenu);
+        for (int i = 0; i < srcMenu.length(); i++)
+        {
+            if (srcMenu[i] == '#')
+                srcMenu[i] = x;
+        }
+        cout << srcMenu << endl;
+    }
+    FileIn.close();
     textColor(LIGHTGRAY);
     int type = 1;
     char c = 175;
     gotoXY(20, 13); cout << "NEW GAME";
-    gotoXY(20, 15); cout << "RESUME";
+    gotoXY(20, 15); cout << "HOW TO PLAY";
     gotoXY(20, 17); cout << "HIGH SCORE";
     gotoXY(20, 19); cout << "QUIT";
     gotoXY(20, 21); cout << "Press W and S to move.";
@@ -160,21 +165,9 @@ void Game::Introduce() {
 }
 
 int Game::Play(int mode) {
+
     resizeConsole(1200, 700);
-
     int res;	// final result
-    // resume mode
-    if (mode == 2)
-    {
-        ifstream FileIn;
-        FileIn.open("Resume.txt");
-        aboard.INPUT(FileIn);
-        aPlayer.Input(FileIn);
-        FileIn.close();
-        aboard.displayBoard();
-
-    }
-
     clock_t Start, End;
     char c;
 
@@ -259,31 +252,44 @@ int Game::Play(int mode) {
                     }
                     break;
                 case 27:  // Esc
-                    if (this->draw_Y_N_board(LEFT_MARGIN + 6, TOP_MARGIN + 5, "Quit game ? "))
+                    if (this->draw_Y_N_board(LEFT_MARGIN + 6, TOP_MARGIN + 5, "Quit game? "))
                     {
                         this->erase_Y_N_board(LEFT_MARGIN + 6, TOP_MARGIN + 5);
-                        if (this->draw_Y_N_board(LEFT_MARGIN + 6, TOP_MARGIN + 5, "Save game ? "))
+                        if (this->draw_Y_N_board(LEFT_MARGIN + 6, TOP_MARGIN + 5, "Save highscore? "))
                         {
-                            ofstream FileSave;
-                            FileSave.open("Resume.txt");
-                            for (int i = 0; i < BOARD_ROW; i++)
-                            {
-                                for (int j = 0; j < BOARD_COL; j++)
-                                {
-                                    FileSave << aboard.getValueBrick(i, j) << " ";
-                                }
-                            }
-                            FileSave << "\n";
-                            FileSave << aPlayer.getScore() << " " << aPlayer.getLevel() << " " << aPlayer.getName();
-                            FileSave.close();
                             res = 0;
                         }
                         else
                         {
                             res = 0;  // thoát k lưu game
                         }
+                        // input file
+                        ifstream File;
+                        File.open("highscore.txt");
+                        Player temp;
+                        vector<Player> score;
+                        while (!File.eof())
+                        {
+                            temp.Input(File);
+                            score.push_back(temp);
+                        }
+                        score.push_back(aPlayer);
+                        File.close();
+
+                        // sort the rank
+                        Sort(score);
+
+                        // output file 
+                        ofstream FileOutput;
+                        FileOutput.open("highscore.txt");
+                        for (int i = 0; i < score.size(); i++)
+                        {
+                            score.at(i).Output(FileOutput);
+                        }
+                        FileOutput.close();
                         return res;
                     }
+                    
                     else
                     {
                         this->erase_Y_N_board(LEFT_MARGIN + 6, TOP_MARGIN + 5);
@@ -358,16 +364,69 @@ void Game::End(int res)
 {
 	this->deleteIntro();
 	textColor(LIGHTYELLOW);
-	gotoXY(RIGHT_MARGIN + 9 - 3, TOP_MARGIN + 12 * BRICK_ROW + 3);
-	if (res == -1)
-		cout << "Game over !!!!!";
-	else if (res == 0)
-		cout << "See you again !!!!";
-	else if (res == 1)
-		cout << "You win !!!!";
-	Sleep(1000);
+	gotoXY(RIGHT_MARGIN + 5, TOP_MARGIN + 2 * BRICK_ROW + 3);
+    if (res == 0)
+    {
+        gotoXY(LEFT_MARGIN + 6, TOP_MARGIN + 5);
+        clrscr();
+        cout << "See you again !!!!";
+        return;
+    }
+    else
+    {
+        if (res == -1)
+        {
+            cout << "You lose !!!! Good luck next time!";
+        }
+        else if (res == 1)
+        {
+            cout << "You win !!!! Congratulation!";
+        }
+        if (this->draw_Y_N_board(LEFT_MARGIN + 6, TOP_MARGIN + 5, "Continue?"))
+        {
+            restartGame(res);
+            clrscr();
+            End(res);           // de quy de restart game
+        }
+        else
+        {
+            clrscr();
+            gotoXY(LEFT_MARGIN + 6, TOP_MARGIN + 5);
+            cout << "See you again !!!!";
+            return;
+        }
+    }
 }
-
+void Game::restartGame(int res) 
+{
+    this->erase_Y_N_board(LEFT_MARGIN + 6, TOP_MARGIN + 5);
+    clrscr();
+    aboard.erase();
+    aboard.drawBoard();
+    aboard.displayBoard();
+    Introduce();
+    delete currBlock;
+    currBlock = new Gach;
+    currBlock->random();
+    delete shade;
+    shade = new Gach(*currBlock);
+    aPlayer.restart();
+    res = Play(1);
+}
+void Game::viewInstruction() 
+{
+    clrscr();
+    string inst;
+    ifstream FileIn;
+    FileIn.open("instruction.txt");
+    textColor(LIGHTYELLOW);
+    while (!FileIn.eof())
+    {
+        getline(FileIn, inst);
+        cout << inst << endl;
+    }
+    FileIn.close();
+}
 void Game::viewScore()
 {
 	clrscr();
@@ -398,7 +457,7 @@ void Game::viewScore()
 	}
 	FileIn.close();
 	gotoXY(40, 40);
-	cout << "Bam Esc de tro ve menu ";
+    cout << endl << "Press Space to play. ";
 }
 
 int Game::draw_Y_N_board(int x, int y, string c)

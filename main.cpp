@@ -1,27 +1,38 @@
 #include "game.h"
-
+#include <Windows.h>
 
 int main()
 {
 	int mode, res;
 	Game x;
-	int label;
 
 	mode = x.menu();
+	if (mode == 2)
+	{
+		x.viewInstruction();
+		while (true)
+			if (GetAsyncKeyState(VK_SPACE))
+			{
+				gotoXY(1, 1);
+				clrscr();
+				mode = x.menu();
+				break;
+			}
+	}
 	// view score
 	if (mode == 3)
 	{
 		do
 		{
-			x.viewScore();
-			while (1)
-				if (GetAsyncKeyState(VK_ESCAPE))
-				{
-					gotoXY(1, 1);
-					clrscr();
-					mode = x.menu();
-					break;
-				}
+		x.viewScore();
+		while (true)
+			if (GetAsyncKeyState(VK_SPACE))
+			{
+				gotoXY(1, 1);
+				clrscr();
+				mode = x.menu();
+				break;
+			}
 		} while (mode == 3);
 	}
 
@@ -33,9 +44,11 @@ int main()
 	if (mode == 1)		// new game
 	{
 		x.inputName();
+		x.Introduce();
+		res = x.Play(mode);
+		clrscr();
+		x.End(res);
+		Sleep(1000);
 	}
-	x.Introduce();
-	res = x.Play(mode);
-	x.End(res);
 	return 0;
 }

@@ -25,6 +25,8 @@ public:
     void Introduce();
     int Play(int mode);
     void End(int res);
+    void restartGame(int res);
+    void viewInstruction();
     void viewScore();
     int draw_Y_N_board(int x, int y, string c);
     void erase_Y_N_board(int x, int y);

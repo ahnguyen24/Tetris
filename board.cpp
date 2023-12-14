@@ -106,18 +106,3 @@ void Board::setValueBrick(int row, int col, int value)
 {
     aBoard[row][col].setValue(value);
 }
-
-// nhập dữ liệu từ file
-void Board::INPUT(ifstream &FileIn)
-{
-    int temp;
-    for (int i = 0; i < BOARD_ROW; i++)
-    {
-        for (int j = 0; j < BOARD_COL; j++)
-        {
-            FileIn >> temp;
-            aBoard[i][j].setValue(temp);
-        }
-    }
-
-}

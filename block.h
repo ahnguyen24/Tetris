@@ -17,13 +17,14 @@ private:
     int yFirstBrick;                // toa do x cua vien dau
     int xFirstBrick;                // toa do y cua vien dau
 public:
+    Gach();                         // constructor
+    ~Gach();                        // destructor
+
     int getX_FB();                  // lay toa do x
     void setX_FB(int y);            // dat toa do x
     int getY_FB();                  // lay toa do y
     void setY_FB(int x);            // dat toa do y
-    Gach();                         // constructor
-    ~Gach();                        // destructor
-    
+
     void random();                  // tao ngau nhien gach
     void drawBlock();               // ve gach (tu hang thu 5 tro di)
     void eraseBlock();              // xoa gach

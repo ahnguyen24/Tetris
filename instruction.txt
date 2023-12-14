@@ -1,0 +1,27 @@
+Tetris Game Instructions
+-------------------------------
+[Objective]
+The goal of Tetris is to clear lines by fitting different-shaped blocks together to create solid rows.
+
+[Controls]
+- Move Left/Right:
+Use the A and D keys to move the falling block horizontally.
+- Rotate Block:
+Use the W key to rotate the falling block clockwise.
+- Soft Drop:
+Press the S key to make the block fall faster. This allows for more precise placement.
+- Hard Drop:
+Use the space bar to make the block instantly fall to the bottom.
+
+[Scoring]
+Single Line Clear: 10 points
+Double Line Clear: 30 points
+Triple Line Clear: 50 points
+Tetris (Four Lines Clear): 80 points
+Each 100 points will give you one more level, which makes the game more and more difficult.
+
+[Conditions]
+- You win when you reach the final level of the game.
+- You lose when the blocks reach the top of the screen, and there is no more room for new blocks to fall.
+
+Press Space to play...

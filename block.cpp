@@ -289,7 +289,7 @@ void Gach::assignBoardValue(Board& aboard)
 void Gach::drawShade(Board& aboard)
 {
     this->fall(aboard);
-    textColor(119);
+    textColor(LIGHTCYAN);
 
     int x = LEFT_MARGIN + 1 + yFirstBrick*BRICK_COL;
     int y = xFirstBrick * BRICK_ROW + 1;
@@ -300,7 +300,7 @@ void Gach::drawShade(Board& aboard)
         {
             if (Block.at(i).at(j).getValue() != 0 && (xFirstBrick + i) >= 4)
             {
-                Block.at(i).at(j).drawBrick(x + j * BRICK_COL, y + i * BRICK_ROW, ' ');
+                Block.at(i).at(j).drawBrick(x + j * BRICK_COL, y + i * BRICK_ROW, 35);
             }
         }
     }
