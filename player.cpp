@@ -30,7 +30,7 @@ void Player::saveInfo() {
     textColor(LIGHTGRAY);
     gotoXY(RIGHT_MARGIN + 4, TOP_MARGIN + 6 * BRICK_ROW);
     cout << "PLAYER: ";
-    gotoXY(RIGHT_MARGIN + 14, TOP_MARGIN + 6 * BRICK_ROW + 1);
+    gotoXY(RIGHT_MARGIN + 4, TOP_MARGIN + 6 * BRICK_ROW + 1);
     cout << name;
     gotoXY(RIGHT_MARGIN + 4, TOP_MARGIN + 7 * BRICK_ROW + 1);
     cout << "Score : ";

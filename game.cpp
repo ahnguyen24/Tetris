@@ -121,16 +121,9 @@ void Game::inputName() {
     }   while (name.size() == 0);
 }
 
-void Game::deleteIntro() {
-    int y = TOP_MARGIN + 11 * BRICK_ROW;
-    for (int i = 0; i < 15; i++)
-    {
-        gotoXY(RIGHT_MARGIN + 2, y + i);
-        cout << "			";
-    }
-}
 
-void Game::Introduce() {
+
+void Game::inGameInstruction() {
     clrscr();
     aboard.drawBoard();
     aPlayer.saveInfo();
@@ -147,24 +140,24 @@ void Game::Introduce() {
 
     textColor(LIGHTGREEN);
     gotoXY(x, y);
-    cout << "  A   : Move Left";
+    cout << "  A: Move Left";
     gotoXY(x, y + 2);
-    cout << "  S   : Move Down";
+    cout << "  D: Move Right";
     gotoXY(x, y + 4);
-    cout << "  D   : Move Right";
+    cout << "  S: Move Down";
     gotoXY(x, y + 6);
-    cout << "  W   : Rotate";
+    cout << "  W: Rotate";
     gotoXY(x, y + 8);
-    cout << "Space : Free fall";
+    cout << "Space: Fall down";
     gotoXY(x, y + 10);
-    cout << "  R   : Restart";
+    cout << "  R: Restart";
     gotoXY(x, y + 12);
-    cout << "  P   : Pause/Resume";
+    cout << "  P: Pause/Resume";
     gotoXY(x, y + 14);
-    cout << " Esc  : Quit";
+    cout << " Esc: Quit Game";
 }
 
-int Game::Play(int mode) {
+int Game::Play() {
 
     resizeConsole(1200, 700);
     int res;	// final result
@@ -362,7 +355,6 @@ int Game::Play(int mode) {
 
 void Game::End(int res)
 {
-	this->deleteIntro();
 	textColor(LIGHTYELLOW);
 	gotoXY(RIGHT_MARGIN + 5, TOP_MARGIN + 2 * BRICK_ROW + 3);
     if (res == 0)
@@ -397,6 +389,7 @@ void Game::End(int res)
         }
     }
 }
+
 void Game::restartGame(int res) 
 {
     this->erase_Y_N_board(LEFT_MARGIN + 6, TOP_MARGIN + 5);
@@ -404,15 +397,16 @@ void Game::restartGame(int res)
     aboard.erase();
     aboard.drawBoard();
     aboard.displayBoard();
-    Introduce();
+    inGameInstruction();
     delete currBlock;
     currBlock = new Gach;
     currBlock->random();
     delete shade;
     shade = new Gach(*currBlock);
     aPlayer.restart();
-    res = Play(1);
+    res = Play();
 }
+
 void Game::viewInstruction() 
 {
     clrscr();
@@ -427,6 +421,7 @@ void Game::viewInstruction()
     }
     FileIn.close();
 }
+
 void Game::viewScore()
 {
 	clrscr();
@@ -515,17 +510,18 @@ int Game::draw_Y_N_board(int x, int y, string c)
 			cout << "NO";
 		}
 
-		if (GetAsyncKeyState(VK_RIGHT))
+        if (GetAsyncKeyState('D'))
 		{
 			check = 0;
 		}
 
-		if (GetAsyncKeyState(VK_LEFT))
+		if (GetAsyncKeyState('A'))
 		{
 			check = 1;
 		}
 	}
 }
+
 void Game::erase_Y_N_board(int x, int y)
 {
     for (int i = 0; i <= 6; i++)

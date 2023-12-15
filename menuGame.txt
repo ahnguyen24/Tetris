@@ -23,5 +23,9 @@
 #                                                       #
 #                                                       #
 #                                                       #
-# Please Full Screen Console before playing! Thank You! #                  
+#                                                       #
+#                                                       #
+# This game works best in full screen mode.             #
+# Please enable full console screen before playing.     # 
+# Thank You for playing this game!                      #                  
 #########################################################

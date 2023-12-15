@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <iostream>
 #include <windows.h>
@@ -19,17 +19,16 @@ protected:
     Player aPlayer;
     Gach *currBlock, *nextBlock, *shade;
 public:
-    int menu();
-    void inputName();
-    void deleteIntro();
-    void Introduce();
-    int Play(int mode);
-    void End(int res);
-    void restartGame(int res);
-    void viewInstruction();
-    void viewScore();
-    int draw_Y_N_board(int x, int y, string c);
-    void erase_Y_N_board(int x, int y);
+    int menu();                 // vẽ menu, đồng thời return các mode ở menu
+    void inputName();           // vẽ màn hình nhập tên người chơi
+    void inGameInstruction();   // vẽ phần hướng dẫn chơi trong game        
+    int Play();         // hàm play, sẽ return giá trị res ảnh hưởng đến ending
+    void End(int res);          // in ra màn hình ending của game
+    void restartGame(int res);  // bắt đầu lại trò chơi
+    void viewInstruction();     // mode 2, mở hướng dẫn trò chơi
+    void viewScore();           // xem highscore
+    int draw_Y_N_board(int x, int y, string c); // vẽ menu chọn Yes/No
+    void erase_Y_N_board(int x, int y);         // xoá menu
 };
 
 template <class T>

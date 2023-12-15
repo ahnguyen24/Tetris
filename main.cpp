@@ -44,8 +44,8 @@ int main()
 	if (mode == 1)		// new game
 	{
 		x.inputName();
-		x.Introduce();
-		res = x.Play(mode);
+		x.inGameInstruction();
+		res = x.Play();
 		clrscr();
 		x.End(res);
 		Sleep(1000);
